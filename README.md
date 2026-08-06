@@ -5,6 +5,10 @@ This project implements a Deep Learning-based Music Genre Classifier using the *
 ## 📊 Project Overview
 The model processes raw audio files, converts them into **Mel-Spectrograms**, and uses a CNN architecture to extract spatial features for high-accuracy genre identification.
 
+## 🚀 Live Demo
+You can access the live prediction engine here:
+[**Music Genre Classifier - Streamlit App**](https://music-genre-classifier-zcy6cvnbelmcz4zw7zsusc.streamlit.app/)
+
 * **Dataset:** [GTZAN Genre Classification Dataset](https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification/data)
 * **Technology Stack:** Python, TensorFlow/Keras, Librosa, Streamlit
 * **Model Performance:** Achieved approximately 84% test accuracy on the GTZAN dataset.
@@ -21,9 +25,7 @@ Check out the training metrics below:
 ### Genre Classification Confusion Matrix
 ![Confusion Matrix](confusion_matrix.png)
 
-## 🚀 Live Demo
-You can access the live prediction engine here:
-[**Music Genre Classifier - Streamlit App**](https://music-genre-classifier-zcy6cvnbelmcz4zw7zsusc.streamlit.app/)
+
 
 ## 🛠️ How it Works
 1. **Audio Preprocessing:** The application loads a 30-second audio clip using Librosa and converts it into a Mel-Spectrogram.
