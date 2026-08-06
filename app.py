@@ -41,12 +41,12 @@ GENRES = ['blues', 'classical', 'country', 'disco', 'hiphop', 'jazz', 'metal', '
 
 # These MUST match the values used in the training notebook
 SR = 22050
-TRACK_DURATION = 30.0
 SEGMENT_DURATION = 3.0
 SAMPLES_PER_SEGMENT = int(SR * SEGMENT_DURATION)
 N_MELS = 128
 FMAX = 8000
 TARGET_FRAMES = 130  # matches training: mel_spec_db[:, :130]
+MAX_DURATION = 600.0  # safety cap: don't process more than 10 minutes of audio
 
 # Optional: normalization stats saved from training (mean.npy / std.npy).
 # If not present, we fall back to per-clip normalization (less accurate
@@ -95,7 +95,7 @@ if saved_mean is None:
 
 # UI Layout Header
 st.title("🎵 Music Genre Classification Engine")
-st.markdown("Upload a full-length audio track (e.g., 30-second WAV/MP3) to analyze its features using a production-ready CNN architecture.")
+st.markdown("Upload an audio track (any length — full song works too) to analyze its features using a production-ready CNN architecture.")
 
 # File Uploader
 uploaded_file = st.file_uploader("Choose an audio file...", type=["wav", "mp3", "ogg", "flac"])
@@ -105,20 +105,20 @@ if uploaded_file is not None:
         # Display audio player
         st.audio(uploaded_file, format='audio/wav')
 
-        # Audio Loading
+        # Audio Loading (loads the full track, capped at MAX_DURATION for safety)
         with st.spinner("🔄 Loading and decoding audio file..."):
             audio, sr = librosa.load(
                 uploaded_file,
                 sr=SR,
                 mono=True,
-                duration=TRACK_DURATION
+                duration=MAX_DURATION
             )
 
         duration = librosa.get_duration(y=audio, sr=sr)
 
         # Validate Audio Duration
-        if duration < 25:
-            st.error("Please upload an audio clip close to 30 seconds.")
+        if duration < SEGMENT_DURATION:
+            st.error(f"Please upload an audio clip at least {int(SEGMENT_DURATION)} seconds long.")
             st.stop()
 
         # Track Metadata Cards
@@ -130,11 +130,15 @@ if uploaded_file is not None:
         with col3:
             st.metric(label="🎼 Sample Rate", value=f"{sr} Hz")
 
+        if duration >= MAX_DURATION - 1:
+            st.info(f"ℹ️ Only the first {int(MAX_DURATION)} seconds are analyzed for very long tracks.")
+
         # ------------------------------------------------------------------
-        # Split into 3-second segments, exactly like the training pipeline
+        # Split the ENTIRE track into consecutive 3-second segments,
+        # exactly like the training pipeline (just not capped at 30s anymore)
         # ------------------------------------------------------------------
         segment_specs = []
-        num_segments = int(TRACK_DURATION // SEGMENT_DURATION)  # 10
+        num_segments = int(len(audio) // SAMPLES_PER_SEGMENT)
 
         for d in range(num_segments):
             start_sample = int(d * SAMPLES_PER_SEGMENT)
