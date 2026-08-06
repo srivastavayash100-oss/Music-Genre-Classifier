@@ -13,6 +13,9 @@ You can access the live prediction engine here:
 * **Technology Stack:** Python, TensorFlow/Keras, Librosa, Streamlit
 * **Model Performance:** Achieved approximately 84% test accuracy on the GTZAN dataset.
 
+## 📝 About the Dataset
+The GTZAN dataset is the most commonly used dataset for the evaluation of music genre classification. It consists of 1000 audio tracks each 30 seconds long. It contains 10 genres: *Blues, Classical, Country, Disco, Hiphop, Jazz, Metal, Pop, Reggae, and Rock.*
+
 ## 🖼️ Model Performance
 Check out the training metrics below:
 
@@ -32,8 +35,7 @@ Check out the training metrics below:
 2. **Feature Extraction:** It converts power spectrograms to Decibel (dB) scale.
 3. **Deep Learning Inference:** The CNN model processes these segments and averages the predicted probabilities to give the final genre classification.
 
-## 📝 About the Dataset
-The GTZAN dataset is the most commonly used dataset for the evaluation of music genre classification. It consists of 1000 audio tracks each 30 seconds long. It contains 10 genres: *Blues, Classical, Country, Disco, Hiphop, Jazz, Metal, Pop, Reggae, and Rock.*
+
 
 
 
