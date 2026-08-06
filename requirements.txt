@@ -1,3 +1,6 @@
 streamlit
 librosa
 numpy
+matplotlib
+tensorflow
+soundfile
