@@ -42,7 +42,7 @@ GENRES = ['blues', 'classical', 'country', 'disco', 'hiphop', 'jazz', 'metal', '
 # Model Loading with Error Handling
 @st.cache_resource
 def load_cortex_model():
-    model_path = 'models/best_genre_model.keras'
+    model_path = 'best_genre_model.keras'
     
     if not os.path.exists(model_path):
         st.error(f"❌ Critical Error: Model file not found at `{model_path}`. Please ensure it is uploaded to the correct directory.")
