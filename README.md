@@ -33,14 +33,5 @@ You can access the live prediction engine here:
 ## 📝 About the Dataset
 The GTZAN dataset is the most commonly used dataset for the evaluation of music genre classification. It consists of 1000 audio tracks each 30 seconds long. It contains 10 genres: *Blues, Classical, Country, Disco, Hiphop, Jazz, Metal, Pop, Reggae, and Rock.*
 
-## 📁 Project Structure
 
-├── app.py
-├── best_genre_model.keras
-├── norm_stats.npz
-├── requirements.txt
-├── accuracy_curve.png
-├── loss_curve.png
-├── confusion_matrix.png
-└── README.md
 
