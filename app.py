@@ -95,7 +95,7 @@ if saved_mean is None:
 
 # UI Layout Header
 st.title("🎵 Music Genre Classification Engine")
-st.markdown("Upload an audio track (any length — full song works too) to analyze its features using a production-ready CNN architecture.")
+st.markdown("Upload an audio track (any length - full song works too) to analyze its features using a production-ready CNN architecture.")
 
 # File Uploader
 uploaded_file = st.file_uploader("Choose an audio file...", type=["wav", "mp3", "ogg", "flac"])
